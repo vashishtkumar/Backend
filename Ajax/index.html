@@ -1,0 +1,37 @@
+<html>
+    <body>
+        <h1>Welcome ton the login page</h1>
+        username: <input type="text" id="user">
+        password: <input type="password" id="password"/>
+        <input type="button" value="submit" id="btn"/>
+        <script>
+            const username=document.querySelector("#user");
+            const pass=document.querySelector("#password");
+            const btn=document.querySelector("#btn");
+            
+            btn.addEventListener("click",()=>{
+            
+                let obj={
+                    username:username.value,
+                    pass:pass.value
+                }
+                console.log(obj);
+            
+                fetch("/login",{
+                    method:"Post",
+                    body:JSON.stringify(obj),
+                    headers:{
+                        "content-type":"application/json"
+                    }
+                })
+                .then((res)=>{
+                    return res.text();
+                })
+                .then((res)=>{
+                 window.alert(res);
+                })
+            }
+            )
+            </script>
+    </body>
+</html>

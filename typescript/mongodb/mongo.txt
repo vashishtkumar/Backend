@@ -1,0 +1,48 @@
+mongosh              -- to enter in the mongodb
+show dbs             -- to sjow the database
+use database         -- to use the database
+
+show collections     -- showing collections
+
+CRUD OPERATION
+
+/C- CREATE/
+db.collectionName.insertOne({ name: "Alice", age: 25, city: "New York" });                                                  // insert one document
+
+db.collectionName.insertMany([{ name: "Alice", age: 25, city: "New York" },{ name: "Alice", age: 25, city: "New York" }])   // insert many document
+
+/R- READ/
+db.collectionName.find();                                                                                                  // find the all the documents
+
+db.collectionName.find({age:{$gt:30}});                                                                                   // find or get all with some specific condition
+
+db.collectionName.findOne({name:"vashisht});                                                                              // return the fist matcing element
+
+/U- Update/
+db.collectionName.UpdateOne({name:"vashisht"},{$set:{age:20}})                                                           // update first occured with name vashisht
+
+db.collectionName.updateMany({name:"vashisht},{$set:{age:21}})                                                           // ipadte all whose name is vashisht
+
+/D- Delete/
+db.collectionName.deleteOne({name:"vashisht"});                                                                         // delete first occured document
+
+db.collectionName.deleteMany({name:"vashist"});                                                                        // delete all whose name is vashisht
+
+
+
+###  Replace one
+
+db.collectionName.replaceOne({
+    name:"vashisht"
+},
+{name:vashisht ,id:2211981457}
+)
+
+
+
+##  An ObjectId consists of 12 bytes, divided into four parts:
+
+Timestamp (4 bytes): Represents the Unix epoch timestamp in seconds.
+Machine Identifier (3 bytes): A unique identifier for the machine generating the ObjectId.
+Process Identifier (2 bytes): The process ID of the MongoDB process generating the ObjectId.
+Counter (3 bytes): An incrementing counter, initialized to a random value.
