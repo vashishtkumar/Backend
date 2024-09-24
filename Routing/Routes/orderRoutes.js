@@ -18,5 +18,7 @@ router.get("/history",(req,res)=>{
 router.get("/details",(req,res)=>{
     res.send("order details page");
 })
-
+router.get("/xy*ab",(req,res)=>{
+    res.send("regular expression it is");
+})
 module.exports=router;
