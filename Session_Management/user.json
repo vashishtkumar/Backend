@@ -1,4 +1,4 @@
 [
-    {"username":"vashisht","password":"123"},
-    {"username":"admin","password":"124"}
+    {"username":"vashisht","password":"123","role":"user"},
+    {"username":"admin","password":"124","role":"admin"}
 ]

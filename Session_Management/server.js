@@ -8,7 +8,9 @@ const express=require("express");
 const session=require("express-session");
 const cookieparser=require("cookie-parser");
 const fs=require("fs");
-const exp = require("constants");
+const userRoutes=require("./Routing/userRoutes");
+const adminRoutes=require("./Routing/adminRoutes");
+
 
 const app=express();
 const port=3000;
@@ -24,26 +26,35 @@ app.use(session({
     cookie:{maxAge:oneday}
 }))
 
+app.use("/",userRoutes);
+app.use("/admin",admintest,adminRoutes);
 
-app.get("/logout",(req,res)=>{
-    req.session.destroy();
-    res.sendFile(__dirname+"/public/logout.html");
-})
-app.get("/dashboard",(req,res)=>{
-    if(req.session.username)
-    res.sendFile(__dirname+"/public/dashboard.html");
+function admintest(req,res,next){
+if(req.session.role=="admin")
+    next();
 else
-     res.redirect("/login");
-})
+res.redirect("/login");
+}
+
+// app.get("/logout",(req,res)=>{
+//     req.session.destroy();
+//     res.sendFile(__dirname+"/public/logout.html");
+// })
+// app.get("/dashboard",(req,res)=>{
+//     if(req.session.username)
+//     res.sendFile(__dirname+"/public/dashboard.html");
+// else
+//      res.redirect("/login");
+// })
 
 
-app.get("/login",(req,res)=>{
-    if(req.session.username){
-        res.redirect("/dashboard");
-    }
-    else
-  res.sendFile(__dirname+"/public/index.html");
-})
+// app.get("/login",(req,res)=>{
+//     if(req.session.username){
+//         res.redirect("/dashboard");
+//     }
+//     else
+//   res.sendFile(__dirname+"/public/index.html");
+// })
 
 
 app.post("/login",(req,res)=>{
@@ -61,6 +72,7 @@ app.post("/login",(req,res)=>{
             })
             if(result[0]){
                 req.session.username=req.body.username;
+                req.session.role=result[0].role;
                 res.redirect("/dashboard");
                // res.send(`welcome ${req.body.username}`);
             }
