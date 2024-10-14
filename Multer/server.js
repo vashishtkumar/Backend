@@ -14,7 +14,8 @@ const mstorage=multer.diskStorage({
          },
          filename:(req,file,cb)=>{
             console.log(file);
-            cb(null,"test.jpg");
+            const ext=file.mimetype.split("/")[1];
+            cb(null,"test."+ext);
          }
 })
 
