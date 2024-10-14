@@ -19,7 +19,16 @@ const mstorage=multer.diskStorage({
          }
 })
 
-const upload=multer({storage:mstorage});
+const filter=(req,file,cb)=>{
+    const ext=file.mimetype.split("/")[1];
+    if(ext=="jpeg"){
+      cb(null,true);
+    }
+    else
+    cb(new Error("File not supported"),false);
+}
+
+const upload=multer({storage:mstorage,fileFilter:filter});
 
 
 app.get("/",(req,res)=>{
