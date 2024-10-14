@@ -8,13 +8,12 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Multer storage configuration
+
 const mstorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./public/files"); // Directory where files will be stored
-  },
+    cb(null, "./public/files"); 
   filename: (req, file, cb) => {
-    console.log(file); // Log file details
+    console.log(file); 
     const ext = file.mimetype.split("/")[1]; // Extract file extension
 
     // CORRECTION: Changed file.originalName to file.originalname (correct property)
