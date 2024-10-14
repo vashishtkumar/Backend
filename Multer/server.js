@@ -28,7 +28,9 @@ const filter=(req,file,cb)=>{
     cb(new Error("File not supported"),false);
 }
 
-const upload=multer({storage:mstorage,fileFilter:filter});
+const upload=multer({storage:mstorage,fileFilter:filter,limits:{
+    fileSize:1024;
+}});
 
 
 app.get("/",(req,res)=>{
