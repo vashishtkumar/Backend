@@ -1,0 +1,5 @@
+[
+    {"username":"vashisht83" , "password":"123", "name":"vashisht kumar","role":"user"},
+    {"username":"admin" , "password":"123", "name":"Adminstrator","role":"user"}
+
+]
