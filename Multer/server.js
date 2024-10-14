@@ -8,11 +8,22 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 
-const upload=multer({dest:'./public/files'});
+const mstorage=multer.diskStorage({
+         destination:(req,file,cb)=>{
+          cb(null,"./public/files");
+         },
+         filename:(req,file,cb)=>{
+            console.log(file);
+            cb(null,"test.jpg");
+         }
+})
+
+const upload=multer({storage:mstorage});
 
 
 app.get("/",(req,res)=>{
     res.sendFile(path.join(__dirname,"public","upload.html"));
+    
 })
 
 
