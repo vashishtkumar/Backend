@@ -29,7 +29,7 @@ const filter=(req,file,cb)=>{
 }
 
 const upload=multer({storage:mstorage,fileFilter:filter,limits:{
-    fileSize:1024;
+    fileSize:1024
 }});
 
 
