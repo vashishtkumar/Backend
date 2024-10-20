@@ -2,7 +2,7 @@ const express=require("express");
 const mongoose=require("mongoose");
 const Users=require("./models/userModel");
 const app=express();
-mongoose.connect("mongodb://localhost:27017/BatchMongodb").then(()=>{
+mongoose.connect("mongodb+srv://vashisht:Vashisht83@cluster0.z2mmu.mongodb.net/BatchMongodb?retryWrites=true&w=majority&appName=Cluster0").then(()=>{
     console.log("connected successfully");
 })
 .catch((err)=>{
