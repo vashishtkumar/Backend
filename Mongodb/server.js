@@ -2,6 +2,8 @@
  const mongodb=require("mongodb");
  const app=express();
 
+ app.use(express.urlencoded({extended:true}));
+app.set("view engine","ejs");
 
  const client=mongodb.MongoClient;
 let dinstance;
@@ -19,20 +21,41 @@ console.log("unable to connect database",err);
     if(!dinstance){
         console.log("database not connected");
     }
+
     dinstance.collection("student").find({ }).toArray().then((res1)=>{
-       res.send(JSON.stringify(res1));
+       res.render("home",{data:res1});
     })
+
  })
 
- app.get("/store",(req,res)=>{
+ app.get("/add",(req,res)=>{
+    res.render("add");
+ })
+ app.post("/store",(req,res)=>{
     let obj={
-        name:"newdata",
-       age:30
+        name:req.body.name,
+       age:req.body.age
     }
     dinstance.collection("student").insertOne(obj);
-    res.send("inserted succesfully");
+    res.redirect("/");
  })
+app.get("/deleteEndpoint",(req,res)=>{
+    res.render("delete");
+})
+app.post("/delete",(req,res)=>{
+    dinstance.collection("student").deleteOne({name:req.body.delname});
+    res.redirect("/");
+})
 
+
+app.get("/updateEndpoint",(req,res)=>{
+    res.render("update");
+})
+
+app.post("/update",(req,res)=>{
+    dinstance.collection("student").updateMany({name:req.body.updateName},{$set:{"name":req.body.newName}})
+    res.redirect("/");
+})
  app.listen(3000,(err)=>{
     console.log("connected at port 3000");
  })
