@@ -24,8 +24,11 @@
         </tr>
         <% data.forEach((item)=>{%>
           <tr>
-          <th><%=item.name%></th>
-          <th><%=item.age%></th>
+           <td> <a href="/viewData/<%=item._id%>">view</a></td>
+           <td> <a href="/editData/<%=item._id%>">edit</a></td>
+           <td> <a href="/deleteData/<%=item._id%>">delete</a></td>
+          <td><%=item.name%></td>
+          <td><%=item.age%></td>
           </tr>
         <%})%>
     </table>

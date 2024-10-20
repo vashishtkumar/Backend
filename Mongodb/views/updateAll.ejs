@@ -1,0 +1,10 @@
+<html>
+    <body>
+        <form action="/edit" method="post">
+            name:<input type="text" value="<%=data.name%>" name="name">
+            age:<input type="text" value="<%=data.age%>" name="age"/>
+            <input type="hidden"   value="<%=data._id%>" name="id"/>
+            <button>submit</button>
+        </form>
+    </body>
+</html>
