@@ -12,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 const mstorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./public/files"); 
+  },
   filename: (req, file, cb) => {
     console.log(file); 
     const ext = file.mimetype.split("/")[1]; // Extract file extension
